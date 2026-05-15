@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WYLO — Le cinéma à la demande</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.cdnfonts.com/css/electromagnetic-lungs');
+
+.wylo-word {
+  font-weight: 800;
+  text-transform: lowercase;
+}
+
+
+/* --- Hero mobile app mockup --- */
+.hero {
+  overflow: hidden;
+}
+
+.hero-grid {
+  width: min(1280px, 100%);
+  display: grid;
+  grid-template-columns: minmax(0, 760px) minmax(260px, 390px);
+  align-items: center;
+  gap: clamp(32px, 6vw, 90px);
+}
+
+.hero-content {
+  width: auto;
+  max-width: 850px;
+}
+
+.app-mockup {
+  position: relative;
+  opacity: var(--heroFade);
+  transform: translateY(calc(-36px + ((1 - var(--heroFade)) * -18px))) rotate(0deg);
+  transition: opacity .05s linear;
+  pointer-events: none;
+  justify-self: center;
+}
+
+.app-mockup img {
+  display: block;
+  width: min(420px, 31vw);
+  height: auto;
+  filter: drop-shadow(0 34px 70px rgba(0,0,0,.72)) ;
+}
+
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .app-mockup {
+    justify-self: start;
+    margin-left: 2vw;
+    margin-top: -10px;
+  }
+
+  .app-mockup img {
+    width: min(330px, 72vw);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-top: 16vh;
+  }
+
+  .hero-grid {
+    gap: 26px;
+  }
+
+  .app-mockup {
+    justify-self: center;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .app-mockup img {
+    width: min(285px, 78vw);
+  }
+
+  h1 {
+    white-space: normal;
+  }
+}
+
+
+@media (max-width: 1100px) {
+  h1 {
+    font-size:clamp(28px, 4vw, 58px);
+    max-width:680px;
+  }
+}
+
+@media (max-width: 760px) {
+  h1 {
+    white-space:normal;
+    max-width:100%;
+    font-size:clamp(28px, 9vw, 48px);
+  }
+}
+
+
+.logo-wrap {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+}
+.logo-wrap:visited {
+  color: inherit;
+}
+
+
+/* --- Ecran final : fond blanc pur et liseré blanc type mockup --- */
+.screen {
+  background: #fff !important;
+  border: 4px solid #fff !important;
+  border-radius: 8px !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.92),
+    0 18px 60px rgba(0,0,0,.55) !important;
+}
+
+.screen::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 3px solid rgba(255,255,255,.96);
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.screen-inner {
+  background: #fff !important;
+}
+
+
+.app-mockup {
+  transform: translateY(calc(-72px + ((1 - var(--heroFade)) * -18px))) !important;
+}
+@media (max-width: 760px) {
+  .app-mockup {
+    transform: translateY(-24px) !important;
+  }
+}
+
+/* --- Corrections finales écran et hero --- */
+.screen {
+  background:#fff !important;
+  border:4px solid #fff !important;
+  border-radius:22px !important;
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.96),
+    0 22px 70px rgba(0,0,0,.60) !important;
+}
+
+.screen::before {
+  content:"";
+  position:absolute;
+  inset:-10px;
+  border:3px solid rgba(255,255,255,.98);
+  border-radius:30px;
+  pointer-events:none;
+}
+
+.screen-inner {
+  background:#fff !important;
+  border-radius:18px !important;
+}
+
+.eyebrow {
+  color:var(--wyloRed) !important;
+}
+
+@media (max-width: 760px) {
+  .screen h3 {
+    font-size:clamp(25px,7vw,34px) !important;
+  }
+
+  .screen-sub {
+    font-size:12px !important;
+  }
+
+  .screen-form {
+    grid-template-columns:1fr !important;
+  }
+
+  .screen-form input,
+  .screen-form button {
+    height:42px !important;
+  }
+}
+
+
+/* --- Screen redesign inspired by uploaded frame --- */
+.screen {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 30px !important;
+  box-shadow: 0 28px 90px rgba(0,0,0,.68) !important;
+  overflow: visible !important;
+}
+
+.screen::before{
+  display:none !important;
+}
+
+.screen-frame{
+  position:absolute;
+  inset:-18px;
+  width:calc(100% + 36px);
+  height:calc(100% + 36px);
+  object-fit:fill;
+  pointer-events:none;
+  z-index:1;
+}
+
+.screen-inner{
+  position:relative;
+  z-index:2;
+  background:#fff !important;
+  border-radius:24px !important;
+  padding:42px 42px 36px 42px !important;
+}
+
+.screen h3{
+  font-size:clamp(38px,3vw,58px) !important;
+}
+
+.screen-sub{
+  font-size:clamp(15px,1.1vw,18px) !important;
+}
+
+@media (max-width:760px){
+  .screen-frame{
+    inset:-10px;
+    width:calc(100% + 20px);
+    height:calc(100% + 20px);
+  }
+
+  .screen-inner{
+    border-radius:20px !important;
+    padding:28px 24px 24px 24px !important;
+  }
+}
+
+
+
+/* --- Thin contour-fitting white outline --- */
+.screen{
+  position:relative;
+}
+
+.screen-outline{
+  position:absolute;
+  inset:-6px;
+  border:2px solid rgba(255,255,255,.96);
+  border-radius:30px;
+  pointer-events:none;
+  z-index:3;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.22),
+    0 16px 42px rgba(0,0,0,.42);
+}
+
+@media (max-width:760px){
+  .screen-outline{
+    inset:-4px;
+    border-width:2px;
+    border-radius:24px;
+  }
+}
+}
+
+
+.screen-frame,
+.screen-outline{
+  display:none !important;
+}
+
+
+/* --- Ecran final : effet liseré type mockup mobile --- */
+.screen{
+  background:#050505 !important;
+  border:3px solid #ffffff !important;
+  border-radius:34px !important;
+  padding:10px !important;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.58),
+    0 24px 70px rgba(0,0,0,.72) !important;
+  overflow:hidden !important;
+}
+
+.screen::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1.5px solid rgba(255,255,255,.88);
+  border-radius:27px;
+  pointer-events:none;
+  z-index:4;
+}
+
+.screen::after{
+  content:"";
+  position:absolute;
+  inset:10px;
+  border-radius:23px;
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.06),
+    inset 0 -10px 22px rgba(0,0,0,.06);
+  pointer-events:none;
+  z-index:4;
+}
+
+.screen-inner{
+  background:#ffffff !important;
+  border-radius:22px !important;
+  min-height:100% !important;
+  padding:42px 46px 38px !important;
+  overflow:hidden !important;
+}
+
+.screen h3{
+  font-size:clamp(38px,3vw,58px) !important;
+}
+
+.screen-sub{
+  font-size:clamp(15px,1.1vw,18px) !important;
+}
+
+.screen-kicker{
+  color:var(--wyloRed) !important;
+  font-size:10px !important;
+}
+
+@media (max-width:760px){
+  .screen{
+    border-radius:28px !important;
+    padding:7px !important;
+    border-width:2.5px !important;
+  }
+
+  .screen::before{
+    inset:4px;
+    border-radius:23px;
+  }
+
+  .screen-inner{
+    border-radius:19px !important;
+    padding:28px 24px 24px !important;
+  }
+
+  .screen h3{
+    font-size:clamp(25px,7vw,34px) !important;
+  }
+
+  .screen-sub{
+    font-size:12px !important;
+  }
+}
+
+
+/* --- Position finale corrigée : écran bien séparé des fauteuils --- */
+.screen {
+  top: 20.5vh !important;
+}
+
+.screen-beam {
+  top: 18.5vh !important;
+}
+
+@media (max-width:760px){
+  .screen {
+    top: 26.5vh !important;
+  }
+
+  .screen-beam {
+    top: 24.5vh !important;
+  }
+}
+
+
+/* --- Legal modal links --- */
+.footer-legal{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-left:6px;
+}
+
+.footer-legal button{
+  appearance:none;
+  border:0;
+  background:transparent;
+  color:rgba(255,255,255,.48);
+  font-family:"Montserrat", sans-serif;
+  font-size:11px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  cursor:pointer;
+  padding:0;
+  transition:color .22s ease;
+}
+
+.footer-legal button:hover{
+  color:#fff;
+}
+
+.legal-modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:rgba(0,0,0,.78);
+  backdrop-filter:blur(8px);
+}
+
+.legal-modal.open{
+  display:flex;
+}
+
+.legal-dialog{
+  width:min(720px,92vw);
+  max-height:min(760px,82vh);
+  overflow:auto;
+  background:#fff;
+  color:#111;
+  border-radius:24px;
+  padding:34px 36px 32px;
+  box-shadow:0 30px 90px rgba(0,0,0,.65);
+  position:relative;
+}
+
+.legal-dialog h3{
+  margin:0 48px 24px 0;
+  font-family:"Electromagnetic Lungs", sans-serif;
+  letter-spacing:.05em;
+  font-weight:400;
+  font-size:clamp(30px,3vw,44px);
+  line-height:1;
+}
+
+.legal-dialog p{
+  margin:0 0 18px;
+  color:rgba(0,0,0,.72);
+  font-size:14px;
+  line-height:1.65;
+  font-weight:500;
+}
+
+.legal-dialog strong{
+  color:#000;
+  font-weight:800;
+}
+
+.legal-close{
+  position:absolute;
+  top:22px;
+  right:22px;
+  width:34px;
+  height:34px;
+  border-radius:999px;
+  border:0;
+  background:#c1121f;
+  color:#fff;
+  cursor:pointer;
+  font-size:18px;
+  line-height:34px;
+  font-weight:700;
+}
+
+@media (max-width:760px){
+  .footer-legal{
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .footer-legal button{
+    font-size:10px;
+  }
+
+  .legal-dialog{
+    padding:30px 24px 26px;
+    border-radius:20px;
+  }
+}
+
+
+/* --- Footer corrected layout --- */
+footer{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:space-between !important;
+  gap:24px !important;
+}
+
+.footer-legal{
+  display:flex !important;
+  align-items:center !important;
+  gap:18px !important;
+  margin-left:auto !important;
+}
+
+.footer-social{
+  display:flex !important;
+  align-items:center !important;
+  gap:10px !important;
+}
+
+@media (max-width:760px){
+  footer{
+    align-items:flex-start !important;
+    flex-direction:column !important;
+  }
+
+  .footer-legal{
+    margin-left:0 !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:8px !important;
+  }
+}
+
+
+/* --- Footer spacing refinement --- */
+.footer-legal{
+  gap:34px !important;
+  margin-right:34px !important;
+}
+
+.footer-social{
+  margin-left:10px !important;
+}
+
+/* --- Final screen dark version --- */
+.screen{
+  background:#050505 !important;
+  border-color:#ffffff !important;
+}
+
+.screen-inner{
+  background:#050505 !important;
+  color:#fff !important;
+}
+
+.screen h3{
+  color:#fff !important;
+}
+
+.screen-sub{
+  color:rgba(255,255,255,.72) !important;
+}
+
+.screen-sub .wylo-word{
+  color:#fff !important;
+}
+
+.screen-form input{
+  background:#fff !important;
+  color:#111 !important;
+  border-color:rgba(255,255,255,.25) !important;
+}
+
+.screen-form button{
+  background:var(--wyloRed) !important;
+  color:#fff !important;
+}
+
+@media (max-width:760px){
+  .footer-legal{
+    gap:12px !important;
+    margin-right:0 !important;
+  }
+
+  .footer-social{
+    margin-left:0 !important;
+  }
+}
+
+
+/* --- Final screen simplified white version --- */
+.screen{
+  background:#ffffff !important;
+  border:0 !important;
+  box-shadow:
+    0 24px 70px rgba(0,0,0,.58) !important;
+}
+
+.screen::before,
+.screen::after{
+  display:none !important;
+}
+
+.screen-inner{
+  background:#ffffff !important;
+  color:#111 !important;
+}
+
+.screen h3{
+  color:#111 !important;
+}
+
+.screen-sub{
+  color:rgba(0,0,0,.68) !important;
+}
+
+.screen-sub .wylo-word{
+  color:#111 !important;
+}
+
+.screen-form input{
+  background:#fff !important;
+  color:#111 !important;
+  border-color:rgba(0,0,0,.14) !important;
+}
+
+
+/* --- Lighter typography inside final screen --- */
+.screen-sub{
+  font-weight:400 !important;
+}
+
+.screen-form input{
+  font-weight:400 !important;
+}
+
+.screen-form button{
+  font-weight:700 !important;
+}
+
+.screen-kicker{
+  font-weight:700 !important;
+}
+
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --screenOpacity: 0;
+  --roomLight: .08;
+  --heroFade: 1;
+  --formOpacity: 0;
+  --screenPointer: none;
+  --wyloRed:#c1121f;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior:smooth; background:#000; }
+body { margin:0; font-family:"Montserrat", sans-serif; background:#000; color:#fff; overflow-x:hidden; }
+.grain { position:fixed; inset:0; z-index:100; pointer-events:none; opacity:.025; background-image:repeating-linear-gradient(0deg, rgba(255,255,255,.12), rgba(255,255,255,.12) 1px, transparent 1px, transparent 3px); mix-blend-mode:screen; }
+.topbar { position:fixed; z-index:90; inset:0 0 auto 0; padding:28px 42px; display:flex; align-items:center; justify-content:space-between; pointer-events:none; background:linear-gradient(to bottom, rgba(0,0,0,.92), rgba(0,0,0,0)); }
+.logo-wrap { display:flex; align-items:center; gap:18px; }
+.logo-mark { width:42px; height:42px; display:block; }
+.logo-mark svg { width:100%; height:100%; display:block; }
+.brand { font-family:"Electromagnetic Lungs", sans-serif; text-transform:lowercase; font-size:24px; letter-spacing:.05em; font-weight:400; }
+.nav { display:flex; gap:26px; align-items:center; pointer-events:auto; }
+.nav a { color:rgba(255,255,255,.68); text-decoration:none; font-size:11px; letter-spacing:.18em; text-transform:uppercase; transition:color .25s ease; }
+.nav a:hover { color:#fff; }
+.cta-small { color:#fff !important; background:#c1121f; padding:11px 17px; border-radius:999px; font-weight:700; letter-spacing:.08em !important; }
+.cinema { position:fixed; inset:0; z-index:1; overflow:hidden; background:#000; }
+.cinema::before { content:""; position:absolute; inset:0; z-index:1; opacity:var(--roomLight); background:linear-gradient(90deg, rgba(255,255,255,.03) 0 1px, transparent 1px 92px), linear-gradient(0deg, rgba(255,255,255,.022) 0 1px, transparent 1px 82px); mask-image:linear-gradient(to bottom, rgba(0,0,0,.95), rgba(0,0,0,.32) 58%, transparent 80%); }
+.cinema::after { content:""; position:absolute; inset:0; z-index:60; pointer-events:none; background:radial-gradient(ellipse at 50% 62%, transparent 24%, rgba(0,0,0,.90) 90%), linear-gradient(to bottom, rgba(0,0,0,.02), transparent 30%, rgba(0,0,0,.84)); }
+.screen-beam { display:none; }
+.screen { position:fixed; z-index:80; left:50%; top:28vh; width:min(720px,58vw); min-height:260px; max-height:42vh; transform:translateX(-50%) perspective(1200px) rotateX(4deg) scale(calc(.88 + var(--screenOpacity) * .028)); transform-origin:center top; opacity:var(--screenOpacity); pointer-events:var(--screenPointer); background:radial-gradient(circle at 50% 42%, #fff, #f6f3ee 68%, #ded8cf); border-radius:4px; box-shadow:0 0 54px rgba(255,255,255,.30), 0 0 130px rgba(193,18,31,0); overflow:hidden; transition:opacity .28s ease-out, transform .28s ease-out; }
+.screen-inner { position:relative; z-index:2; min-height:260px; padding:30px 30px; color:#121212; display:flex; flex-direction:column; justify-content:center; gap:14px; max-height:42vh; overflow:hidden; }
+.screen-kicker { color:var(--wyloRed); font-size:10px; letter-spacing:.30em; text-transform:uppercase; font-weight:800; }
+.screen h3 { font-family:"Electromagnetic Lungs", sans-serif; margin:0; font-size:clamp(34px,2.7vw,52px); line-height:1; letter-spacing:.05em; font-weight:400; }
+.screen-sub { margin:0; color:rgba(18,18,18,.68); font-size:clamp(14px,1.05vw,17px); line-height:1.45; font-weight:500; max-width:620px; }
+.screen-options { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:2px; }
+.screen-choice { width:38px; height:38px; border-radius:999px; display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none; background:var(--wyloRed); box-shadow:0 0 24px rgba(193,18,31,0); transition:background .22s ease, transform .22s ease; }
+.screen-choice:hover { background:#a50f19; transform:translateY(-2px); }
+.screen-choice svg { width:17px; height:17px; display:block; fill:currentColor; }
+.screen-radio { width:20px; height:20px; border:2px solid rgba(193,18,31,0); border-radius:50%; margin-top:2px; }
+.screen-form { display:grid; grid-template-columns:1fr 126px; gap:12px; margin-top:8px; position:relative; z-index:20; pointer-events:auto; }
+.screen-form input { min-width:0; height:48px; border:1px solid rgba(18,18,18,.18); border-radius:999px; padding:0 18px; background:rgba(255,255,255,.96); color:#111; font-family:"Montserrat", sans-serif; font-size:14px; outline:none; pointer-events:auto; }
+.screen-form button { height:48px; border:0; border-radius:999px; background:var(--wyloRed); color:#fff; font-family:"Montserrat", sans-serif; font-size:12px; letter-spacing:.08em; text-transform:uppercase; font-weight:800; cursor:pointer; pointer-events:auto; }
+.form-note { display:none; margin:0; color:#c1121f; font-size:10px; line-height:1.25; font-weight:700; text-align:center; }
+.form-note.visible { display:block; }
+.room { position:absolute; inset:0; z-index:16; display:flex; align-items:center; justify-content:center; perspective:1400px; perspective-origin:50% 42%; pointer-events:none; }
+.auditorium { position:relative; width:min(1680px,130vw); height:min(980px,92vh); transform-style:preserve-3d; transform:rotateX(54deg) translateY(225px) scale(1.04); }
+.floor { position:absolute; left:50%; top:55%; width:1580px; height:1180px; transform:translate(-50%, -50%) translateZ(-55px); border-radius:34px; background:radial-gradient(ellipse at 50% 48%, rgba(255,255,255,.047), transparent 58%), #040202; box-shadow:inset 0 0 160px rgba(255,255,255,.022), 0 80px 160px rgba(0,0,0,.94); }
+.row { position:absolute; left:50%; height:70px; display:flex; align-items:center; justify-content:center; gap:var(--gap); transform-style:preserve-3d; transform:translateX(-50%) translateZ(var(--z)) scale(var(--rowScale)); }
+.seat { position:relative; width:var(--w); height:var(--h); opacity:.035; transform:translateY(8px) scale(.9) rotateY(var(--ry)) skewX(var(--skew)); transform-origin:center bottom; filter:brightness(.33) saturate(1.08) contrast(1.18); transition:opacity .16s linear, transform .22s cubic-bezier(.16,1,.3,1), filter .16s linear; }
+.seat.on { opacity:var(--op); transform:translateY(0) scale(1) rotateY(var(--ry)) skewX(var(--skew)); filter:brightness(calc(var(--br) * 1.2)) saturate(1.45) contrast(1.25); }
+.seat svg { width:100%; height:100%; display:block; filter:drop-shadow(0 13px 17px rgba(0,0,0,.78)); }
+.seat.on svg { filter:drop-shadow(0 0 18px rgba(255,40,52,.35)) drop-shadow(0 13px 17px rgba(0,0,0,.78)); }
+main { position:relative; z-index:32; pointer-events:none; }
+.hero { min-height:116vh; display:grid; align-items:center; padding:18vh 7vw 12vh; pointer-events:auto; }
+.hero-content { width:min(960px,92vw); opacity:var(--heroFade); transform:translateY(calc((1 - var(--heroFade)) * -24px)); transition:opacity .05s linear; }
+.eyebrow { color:var(--wyloRed); letter-spacing:.42em; text-transform:uppercase; font-size:12px; font-weight:600; margin-bottom:28px; }
+
+h1 {
+  font-family:"Electromagnetic Lungs", sans-serif;
+  margin:0;
+  width:100%;
+  max-width:760px;
+  font-size:clamp(30px, 3.8vw, 72px);
+  line-height:1.04;
+  letter-spacing:.05em;
+  font-weight:400;
+  white-space:nowrap;
+}
+
+.hero p { margin:34px 0 0; color:rgba(255,255,255,.70); font-size:clamp(17px,1.35vw,22px); line-height:1.55; max-width:720px; font-weight:300; }
+.btn { border:0; border-radius:999px; padding:15px 23px; font-family:"Montserrat", sans-serif; font-size:12px; letter-spacing:.11em; text-transform:uppercase; font-weight:800; cursor:pointer; text-decoration:none; }
+.btn.primary { background:#c1121f; color:#fff; box-shadow:0 0 44px rgba(193,18,31,0); }
+.btn.secondary { color:#fff; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.04); }
+.scroll-note { margin-top:58px; color:rgba(255,255,255,.34); font-size:11px; letter-spacing:.22em; text-transform:uppercase; }
+.panel { min-height:104vh; display:grid; align-items:center; padding:15vh 7vw; pointer-events:none; }
+.panel:nth-child(odd) { justify-items:end; text-align:right; }
+.text { max-width:680px; }
+.num { color:var(--wyloRed); font-size:13px; letter-spacing:.42em; font-weight:700; margin-bottom:22px; }
+h2 { font-family:"Electromagnetic Lungs", sans-serif; text-transform:lowercase; margin:0; font-size:clamp(48px,6vw,96px); line-height:.92; letter-spacing:.05em; font-weight:400; }
+.text p { color:rgba(255,255,255,.66); font-size:clamp(17px,1.35vw,21px); line-height:1.62; margin:28px 0 0; font-weight:300; }
+.final-space { min-height:150vh; pointer-events:none; }
+.signup { position:relative; z-index:40; min-height:100vh; padding:12vh 7vw 10vh; background:#f7f7f4; color:#20242e; display:grid; place-items:center; }
+.signup-card { width:min(980px,100%); text-align:center; }
+.badge { display:inline-flex; align-items:center; justify-content:center; background:#c1121f; color:#fff; font-weight:800; padding:13px 25px; border-radius:999px; margin-bottom:48px; }
+.signup h3 { margin:0; font-size:clamp(42px,6.5vw,82px); line-height:.95; letter-spacing:-.06em; font-weight:800; }
+.signup-sub { margin:24px auto 54px; font-size:clamp(18px,2vw,28px); line-height:1.25; font-weight:600; max-width:900px; }
+.profile-grid { display:grid; gap:16px; margin:0 auto 46px; width:min(760px,100%); }
+.choice { border:1px solid #dce2ec; border-radius:18px; padding:26px 32px; display:grid; grid-template-columns:1fr 30px; gap:24px; align-items:center; text-align:left; background:#fff; box-shadow:0 1px 0 rgba(0,0,0,.02); }
+.choice h4 { margin:0 0 11px; font-size:25px; line-height:1.1; }
+.choice p { margin:0; color:#242936; font-size:18px; line-height:1.42; font-weight:500; }
+.radio { width:30px; height:30px; border:2px solid #dfe5ee; border-radius:50%; }
+.form-row { display:grid; grid-template-columns:1fr 220px; gap:16px; width:min(760px,100%); margin:0 auto; }
+.form-row input { border:1px solid #dce2ec; border-radius:999px; padding:22px 26px; background:#fff; font-family:"Montserrat", sans-serif; font-size:20px; outline:none; box-shadow:0 3px 8px rgba(0,0,0,.04); }
+.form-row button { border:0; border-radius:999px; background:#c1121f; color:#fff; font-family:"Montserrat", sans-serif; font-size:20px; font-weight:800; cursor:pointer; }
+footer { position:relative; z-index:42; padding:30px 7vw; background:#000; color:rgba(255,255,255,.42); display:flex; align-items:center; justify-content:space-between; gap:24px; font-size:13px; border-top:1px solid rgba(255,255,255,.08); pointer-events:auto; }
+.footer-social { display:flex; align-items:center; gap:10px; }
+.footer-social a { width:38px; height:38px; border-radius:999px; display:flex; align-items:center; justify-content:center; background:var(--wyloRed); color:#fff; text-decoration:none; box-shadow:0 0 24px rgba(193,18,31,0); transition:background .22s ease, transform .22s ease; }
+.footer-social a:hover { background:#a50f19; transform:translateY(-2px); }
+.footer-social svg { width:17px; height:17px; display:block; fill:currentColor; }
+@media (max-width:760px) {
+  .topbar { padding:22px; } .nav a:not(.cta-small) { display:none; } .brand { font-size:18px; letter-spacing:.38em; } .logo-mark { width:34px;height:34px; }
+  .auditorium { position:relative; width:min(1680px,130vw); height:min(980px,92vh); transform-style:preserve-3d; transform:rotateX(54deg) translateY(235px) scale(1.04); }
+  .screen { position:fixed; z-index:80; left:50%; top:13vh; width:min(720px,58vw); min-height:260px; max-height:42vh; transform:translateX(-50%) perspective(1200px) rotateX(4deg) scale(calc(.88 + var(--screenOpacity) * .028)); transform-origin:center top; opacity:var(--screenOpacity); pointer-events:var(--screenPointer); background:radial-gradient(circle at 50% 42%, #fff, #f6f3ee 68%, #ded8cf); border-radius:4px; box-shadow:0 0 54px rgba(255,255,255,.30), 0 0 130px rgba(193,18,31,0); overflow:hidden; transition:opacity .28s ease-out, transform .28s ease-out; } .screen-inner { position:relative; z-index:2; min-height:260px; padding:30px 30px; color:#121212; display:flex; flex-direction:column; justify-content:center; gap:14px; max-height:42vh; overflow:hidden; } .screen-options { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:2px; } .screen-form { display:grid; grid-template-columns:1fr 104px; gap:9px; margin-top:4px; position:relative; z-index:20; pointer-events:auto; } .screen-form button { height:40px; border:0; border-radius:999px; background:var(--wyloRed); color:#fff; font-family:"Montserrat", sans-serif; font-size:10px; letter-spacing:.08em; text-transform:uppercase; font-weight:800; cursor:pointer; pointer-events:auto; }
+.form-note { display:none; margin:0; color:#c1121f; font-size:10px; line-height:1.25; font-weight:700; text-align:center; }
+.form-note.visible { display:block; }
+.hero { padding:18vh 22px 12vh; } .panel,.panel:nth-child(odd) { justify-items:start; text-align:left; padding:16vh 22px; }
+  .form-row { grid-template-columns:1fr; } .form-row button { padding:20px; } .choice { padding:22px; grid-template-columns:1fr 26px; }
+  footer { flex-direction:column; align-items:flex-start; } .footer-social { margin-top:4px; }
+}
+
+/* --- Optimisation responsive mobile --- */
+@media (max-width: 760px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .topbar {
+    padding: 18px 18px;
+    align-items: center;
+  }
+
+  .logo-wrap {
+    gap: 12px;
+  }
+
+  .brand {
+    font-size: 16px;
+    letter-spacing: .34em;
+  }
+
+  .logo-mark {
+    width: 32px;
+    height: 32px;
+  }
+
+  .nav {
+    gap: 10px;
+  }
+
+  .nav a:not(.cta-small) {
+    display: none;
+  }
+
+  .cta-small {
+    padding: 9px 12px;
+    font-size: 9px !important;
+    letter-spacing: .05em !important;
+  }
+
+  .hero {
+    min-height: 105vh;
+    padding: 20vh 22px 12vh;
+  }
+
+  h1 {
+    font-size: clamp(34px, 12vw, 58px);
+    line-height: .94;
+    letter-spacing: -.055em;
+  }
+
+  .hero p {
+    font-size: 15px;
+    line-height: 1.55;
+    max-width: 92vw;
+    margin-top: 24px;
+  }
+
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: .28em;
+    margin-bottom: 22px;
+  }
+
+  .scroll-note {
+    margin-top: 42px;
+    font-size: 9px;
+    letter-spacing: .16em;
+  }
+
+  .panel,
+  .panel:nth-child(odd) {
+    min-height: 96vh;
+    padding: 15vh 22px;
+    justify-items: start;
+    text-align: left;
+  }
+
+  h2 {
+    font-size: clamp(36px, 13vw, 62px);
+    line-height: .94;
+  }
+
+  .text p {
+    font-size: 15px;
+    line-height: 1.56;
+    margin-top: 22px;
+  }
+
+  .num {
+    font-size: 11px;
+    letter-spacing: .32em;
+    margin-bottom: 18px;
+  }
+
+  .screen-beam {
+    top: 29vh;
+    width: 92vw;
+    height: 250px;
+  }
+
+  .screen {
+    top: 32vh;
+    width: 86vw;
+    min-height: 235px;
+    max-height: 38vh;
+    transform: translateX(-50%) perspective(1000px) rotateX(3deg) scale(calc(.9 + var(--screenOpacity) * .025));
+  }
+
+  .screen-inner {
+    min-height: 235px;
+    padding: 24px 22px;
+    gap: 11px;
+    max-height: 38vh;
+  }
+
+  .screen-kicker {
+    font-size: 7px;
+    letter-spacing: .22em;
+  }
+
+  .screen h3 {
+    font-size: clamp(22px, 7vw, 30px);
+    line-height: 1;
+  }
+
+  .screen-sub {
+    font-size: 11px;
+    line-height: 1.35;
+    max-width: 100%;
+  }
+
+  .screen-form {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .screen-form input,
+  .screen-form button {
+    height: 38px;
+    font-size: 11px;
+  }
+
+  .auditorium {
+    width: 1500px;
+    height: 900px;
+    transform: rotateX(57deg) translateY(285px) scale(.58);
+  }
+
+  .row {
+    height: 66px;
+  }
+
+  footer {
+    padding: 24px 22px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 11px;
+  }
+
+  .footer-social {
+    gap: 8px;
+  }
+
+  .footer-social a {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand {
+    letter-spacing: .24em;
+  }
+
+  .cta-small {
+    font-size: 8px !important;
+    padding: 8px 10px;
+  }
+
+  h1 {
+    font-size: clamp(31px, 11.5vw, 48px);
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .screen {
+    top: 36vh;
+    width: 90vw;
+    min-height: 225px;
+  }
+
+  .screen-inner {
+    min-height: 225px;
+    padding: 22px 18px;
+  }
+
+  .auditorium {
+    transform: rotateX(58deg) translateY(310px) scale(.50);
+  }
+}
+
+</style>
+</head>
+<body id="top">
+<div class="grain"></div>
+<header class="topbar">
+  <a href="#top" class="logo-wrap" aria-label="Retour à l’accueil">
+    <div class="logo-mark"><svg xmlns="http://www.w3.org/2000/svg" width="1978.879" height="1827.569" viewBox="0 0 1978.879 1827.569">
+  <g id="Groupe_5808" data-name="Groupe 5808" transform="translate(-782.561 -858.216)">
+    <g id="Groupe_5803" data-name="Groupe 5803" transform="translate(782.561 858.216)">
+      <path id="Soustraction_231" data-name="Soustraction 231" d="M598.9,641.537v0c12.591-5.649,20.708-10.409,20.778-10.452,25.2-7.449,46.132-22.457,58.933-42.254,2.471-3.816,4.749-10.8,6.773-20.769a313.473,313.473,0,0,0,4.422-31.307c1.028-10.684,1.709-22.017,1.919-31.906.209-9.839-.053-17.854-.741-22.572-.236-.666-5.829-16.41-15.227-39.254-8.843-21.488-22.986-53.912-40.146-86.354-19.286-36.459-38.381-65.512-56.757-86.354-10.91-12.373-21.681-21.945-32.012-28.459a76.7,76.7,0,0,0-16.46-7.971,50.24,50.24,0,0,0-33.179,0,76.609,76.609,0,0,0-16.458,7.971c-10.331,6.513-21.1,16.086-32.013,28.459-18.372,20.84-37.467,49.895-56.754,86.354-9.477,17.916-24.134,47.441-40.145,86.354-9.4,22.843-14.992,38.588-15.225,39.248-.69,4.73-.953,12.744-.743,22.578.21,9.889.892,21.223,1.919,31.906a313.181,313.181,0,0,0,4.423,31.307c2.024,9.97,4.3,16.957,6.771,20.769,12.8,19.8,33.73,34.8,58.933,42.254v0l.007,0c.335.2,8.386,4.889,20.763,10.444-2.355-.5-4.693-1.055-6.95-1.64-11.369-2.951-22.477-7.072-36.015-13.356-12.773-5.93-27.061-13.484-45.972-23.754-24.813-13.465-57.32-25.435-91.736-38.108l-.017-.006c-33.309-12.267-67.752-24.953-98.014-40.029-16.348-8.138-29.876-16.168-41.355-24.543a164.588,164.588,0,0,1-16.855-13.987,116.552,116.552,0,0,1-13.581-15.365c-6.859-9.4-14.255-21.886-21.984-37.125-6.814-13.436-14-29.252-21.358-47.012C18.962,348.236,6.2,310.223,0,290.978c15.986-19.652,32.694-38.646,49.659-56.459,18.6-19.525,38-38.16,57.654-55.379l8.164,18.057A291.62,291.62,0,0,0,97.3,246.078c-6.922,25.635-9.064,49.123-6.365,69.815A73.631,73.631,0,0,0,101.5,345.21,102.922,102.922,0,0,0,122.434,369.1c14.7,12.576,34.37,23.8,58.469,33.352a394.819,394.819,0,0,0,56.39,17.26c13.786,3.15,23.414,4.635,25.2,4.9l.045.009c.067-.037,11.159-6.218,26.967-16.014,14.759-9.162,36.907-23.517,58.609-39.879,24.5-18.474,43.613-35.794,56.819-51.478,7.843-9.318,13.662-18.154,17.3-26.264,4-8.912,5.445-17.174,4.306-24.555-7.757,3.1-21.454,5.109-34.89,5.109-11.821,0-21.583-1.494-27.485-4.2-16.439-7.558-46.479-27.512-89.285-59.314-28.648-21.285-63.354-48.149-103.153-79.842a747.192,747.192,0,0,1,72.789-45.7,702.079,702.079,0,0,1,81.126-38.054,681.37,681.37,0,0,1,89.693-28.221c15.8-3.795,31.994-7.069,48.121-9.738C479.952,3.735,496.889,1.558,513.8,0c16.97,1.563,34.006,3.755,50.635,6.515,16.149,2.672,32.427,5.978,48.381,9.821A682.417,682.417,0,0,1,702.961,44.82a702.9,702.9,0,0,1,81.487,38.41,747.871,747.871,0,0,1,73.035,46.1c-39.456,31.41-73.988,58.119-102.635,79.385-42.344,31.424-72.069,51.146-88.351,58.619-5.894,2.709-15.655,4.2-27.485,4.2-13.437,0-27.131-2.006-34.889-5.109-1.14,7.379.309,15.639,4.305,24.555,3.638,8.109,9.459,16.948,17.3,26.264,13.2,15.682,32.321,33,56.818,51.478,12.047,9.084,31.995,23.374,58.61,39.879,16.06,9.955,26.919,15.988,26.965,16.01.05,0,10.034-1.422,25.25-4.906a400.069,400.069,0,0,0,56.39-17.26c24.106-9.555,43.778-20.776,58.471-33.352a102.979,102.979,0,0,0,20.937-23.889,73.462,73.462,0,0,0,10.567-29.318c2.7-20.691.556-44.18-6.367-69.815A291.513,291.513,0,0,0,915.185,197.2l7.293-16.125c19.235,16.963,38.214,35.285,56.411,54.453,16.645,17.522,33.031,36.178,48.7,55.453-6.189,19.233-18.946,57.233-34.849,95.629-7.312,17.664-14.5,33.481-21.358,47.012-7.749,15.276-15.145,27.766-21.984,37.125a116.74,116.74,0,0,1-13.581,15.365A164.646,164.646,0,0,1,918.966,500.1c-11.458,8.364-24.985,16.391-41.356,24.543-30.242,15.065-64.692,27.755-98.008,40.029l-.016.006c-34.412,12.67-66.916,24.637-91.744,38.108-18.916,10.27-33.206,17.828-45.97,23.754-13.522,6.278-24.629,10.4-36.015,13.356C603.588,640.48,601.249,641.033,598.9,641.537Z" transform="translate(474.847 604.564)" fill="#fff"/>
+      <g id="Groupe_1" data-name="Groupe 1" transform="translate(192.607 469.967)">
+        <path id="Tracé_5" data-name="Tracé 5" d="M838.62,846.8c136.23,164.018,358.222,260.336,494.4,440.952,8.955-69.588,2.95-140.519-23.917-208.037l-12.169,25.242C1144.215,967.671,1002.19,950.491,838.62,846.8Z" transform="translate(-768.392 69.851)" fill="#e81029"/>
+        <path id="Tracé_7" data-name="Tracé 7" d="M844.1,1430.746c-3.681,20.909-7.219,41.879-10.614,62.787,165.222-394.843,440.545-707.811,796.039-747.146,355.5,39.335,630.818,352.3,796.04,747.146-3.395-20.908-6.932-41.879-10.613-62.787-100.491-221.866-221.731-403.76-338.859-516.617C1841.364,688.043,1629.529,673.92,1629.529,673.92S1417.7,688.043,1182.961,914.129c-117.127,112.856-238.367,294.75-338.857,516.617Z" transform="translate(-833.49 -673.92)" fill="#e81029"/>
+        <path id="Tracé_25179" data-name="Tracé 25179" d="M1336.894,846.8c-136.23,164.018-358.222,260.336-494.4,440.952-8.955-69.588-2.95-140.519,23.917-208.037l12.169,25.242C1031.3,967.671,1173.324,950.491,1336.894,846.8Z" transform="translate(184.957 69.85)" fill="#e81029"/>
+      </g>
+      <path id="Tracé_25168" data-name="Tracé 25168" d="M93.269,718.58c47.446,39.756,94.22,64.257,158.1,71.44q12.666-40.453,29.864-80.668C33.8,627.139,73.812,305.184,286.58,305.472c-32.917-23.673-87.5-42.461-127.4-51.094,162.752-48.829,326.481,13.459,357.031,152.382,19.392-20.216,36.946-39.9,55.8-57.6,37.946-35.627,76.756-65.7,118.6-97.151C653.635,111.6,559.428,4.372,394.943.095c-31.15-.822-63.116,3.736-94.909,12.816L480.717,96.749,262.49,134.976C40.474,173.821-92.57,401.731,76.5,593.868L198.852,732.993,93.269,718.58Z" transform="translate(0 36.144) rotate(-3)" fill="#fff" fill-rule="evenodd"/>
+      <path id="Union_8" data-name="Union 8" d="M64.823,728.215l51.161,4.656s54.03-169.067,157.769-317.7S544,131.944,544,131.944L530.936,93.051Q641.513,25.366,772.616,0c6.629,1.283.82,0,.82,0s3.466,282.609,0,282.115l-.04-.006-.1-.014-.06-.009-.26-.036h-.006c-.191-.027-.309-.041-.346-.046H772.6l-.037.006-.026,0-.069.009-.04.006-.049.006-.011,0c-.02,0-.034,0-.051.006l-.034.005-.049.007-.071.009h0l-.08.011-.046.006-.34.048-.063.009h-.011l-.637.093c-.017,0-215.888,40.685-394.593,177.545S0,958.18,0,958.18,17.874,879.2,34.079,821.712,64.823,728.215,64.823,728.215Z" transform="translate(215.905 139.971)" fill="#f7001d"/>
+      <path id="Tracé_25172" data-name="Tracé 25172" d="M93.269,718.58c47.446,39.756,94.22,64.257,158.1,71.44q12.666-40.453,29.864-80.668C33.8,627.139,73.812,305.184,286.58,305.472c-32.917-23.673-87.5-42.461-127.4-51.094,162.752-48.829,326.481,13.459,357.031,152.382,19.392-20.216,36.946-39.9,55.8-57.6,37.946-35.627,76.756-65.7,118.6-97.151C653.635,111.6,559.428,4.372,394.943.095c-31.15-.822-63.116,3.736-94.909,12.816L480.717,96.749,262.49,134.976C40.474,173.821-92.57,401.731,76.5,593.868L198.852,732.993,93.269,718.58Z" transform="translate(1.463 36.144) rotate(-3)" fill="#fff" fill-rule="evenodd"/>
+      <path id="Tracé_25272" data-name="Tracé 25272" d="M2345.657,12987.564c-178.707-136.86-394.579-177.543-394.6-177.546-.237-.034-.447-.067-.636-.092l-.01,0-.064-.011c-.129-.017-.24-.033-.339-.047-.017,0-.037,0-.047-.007h-.007a.093.093,0,0,1-.081.042c-.01,0-.027,0-.041,0-.034-.007-.064-.01-.1-.014l-.061-.01c-.1-.014-.186-.023-.261-.037h-.007l-.166-.023-.169.023h0l-.261.037c-.02,0-.041,0-.061.007s-.064.01-.1.017c-.017,0-.03,0-.041,0a.092.092,0,0,1-.081-.042h-.007c-.014,0-.034,0-.047.007-.1.014-.21.03-.339.047l-.064.011-.01,0-.636.092c-.017,0-215.889,40.686-394.6,177.546s-376.39,498.4-376.39,498.4,17.874-78.978,34.079-136.468,30.745-93.5,30.745-93.5l51.161,4.657s54.031-169.068,157.767-317.7,270.248-283.229,270.248-283.229l-13.061-38.895q109.432-66.986,238.989-92.525c.469-.135,2.243-.525,2.243-.525s0,.029,0,.087l.448-.087.186.035.186-.035.448.087v-.087s1.765.39,2.239.524q129.324,25.494,238.994,92.526l-13.061,38.892s166.505,134.6,270.245,283.231,157.77,317.7,157.77,317.7l51.161-4.657s14.54,36,30.745,93.494,34.079,136.471,34.079,136.471S2524.36,13124.421,2345.657,12987.564Z" transform="translate(-959.072 -12387.815)" fill="#e81029"/>
+      <path id="Tracé_25174" data-name="Tracé 25174" d="M93.269,71.44C140.715,31.684,187.489,7.182,251.365,0q12.666,40.453,29.865,80.668C33.8,162.882,73.812,484.836,286.58,484.548c-32.917,23.673-87.5,42.461-127.4,51.094,162.752,48.829,326.482-13.459,357.031-152.382,19.392,20.216,36.946,39.9,55.8,57.6,37.946,35.627,76.756,65.7,118.6,97.151-36.98,140.413-131.187,247.638-295.672,251.915-31.15.822-63.116-3.736-94.909-12.816l180.683-83.839L262.49,655.044C40.474,616.2-92.57,388.289,76.5,196.152L198.852,57.027,93.269,71.44Z" transform="translate(1937.532 825.082) rotate(-177)" fill="#fff" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>
+</div>
+    <div class="brand">WYLO</div>
+  </a>
+  <nav class="nav">
+    <a href="#concept">Concept</a>
+    <a href="#signup" class="cta-small">Pré-inscription</a>
+  </nav>
+</header>
+<div class="cinema">
+  <div class="screen-beam"></div>
+  <div class="screen" id="screen">
+    <div class="screen-inner">
+      <div class="screen-kicker">Pré-inscription</div>
+      <h3>Lancement imminent.</h3>
+      <p class="screen-sub">Laisse ton email pour être prévenu.e dès que <span class="wylo-word">wylo</span> sera disponible.</p>
+      <form class="screen-form" id="signupForm" action="mailto:contact@wylo-app.com?subject=Pr%C3%A9-inscription%20WYLO&body=Bonjour%2C%0A%0AJe%20souhaite%20%C3%AAtre%20inform%C3%A9.e%20d%C3%A8s%20le%20lancement%20officiel%20de%20WYLO%20et%20recevoir%20un%20email%20lorsque%20l%E2%80%99application%20sera%20disponible.%0A%0AL%E2%80%99adresse%20email%20que%20je%20partage%20ici%20est%20uniquement%20destin%C3%A9e%20%C3%A0%20cet%20usage%20et%20ne%20peut%20%C3%AAtre%20utilis%C3%A9e%20%C3%A0%20d%E2%80%99autres%20fins.%0A%0ABonne%20journ%C3%A9e." method="post" enctype="text/plain">
+        <input type="email" name="Email" placeholder="Entre ton email" required autocomplete="email">
+        <button type="submit">Valider</button>
+      </form>
+    </div>
+  </div>
+  <div class="room">
+    <div class="auditorium">
+      <div class="floor"></div>
+      <div id="auditorium"></div>
+    </div>
+  </div>
+</div>
+<main>
+  <section class="hero">
+    <div class="hero-grid"><div class="hero-content">
+      <div class="eyebrow">Le cinéma à la demande</div>
+      <h1>Tu demandes un film.<br>Les utilisateurs s'inscrivent.<br>Ton cinéma le projette.</h1>
+      <p><span class="wylo-word">wylo</span> remet les spectateurs au coeur de la programmation<br>et la programmation dans le coeur des spectateurs.</p>
+      <div class="scroll-note">Scrolle pour remplir la salle.</div>
+    </div><div class="app-mockup" aria-hidden="true"><img src="wylo_app_mockup.svg" alt=""></div></div>
+  </section>
+
+  <section class="panel" id="concept"><div class="text"><div class="num">01</div><h2>CONSTAT</h2><p>Certains films disparaissent des salles avant même que le public ait eu le temps de les découvrir sur grand écran.</p></div></section>
+  <section class="panel"><div class="text"><div class="num">02</div><h2>DEMANDE</h2><p>Avec <span class="wylo-word">wylo</span>, un spectateur peut demander la projection d’un film dans un cinéma partenaire, à la date et à l’horaire qu’il souhaite.</p></div></section>
+  <section class="panel"><div class="text"><div class="num">03</div><h2>INSCRIPTIONS</h2><p>Les utilisateurs de l’application rejoignent librement la séance s’ils souhaitent eux aussi voir le film projeté au cinéma.</p></div></section>
+  <section class="panel"><div class="text"><div class="num">04</div><h2>VALIDATION</h2><p>Lorsque le nombre minimum de spectateurs fixé par le cinéma est atteint, la projection est automatiquement confirmée.</p></div></section>
+  <section class="panel"><div class="text"><div class="num">05</div><h2>PROJECTION</h2><p>Le jour venu, la séance a lieu dans le cinéma partenaire comme n’importe quelle projection programmée en salle.</p></div></section>
+  <section class="final-space" id="signup"></section>
+</main>
+<footer>
+  <div>WYLO</div>
+
+  <div class="footer-legal">
+    <button type="button" data-legal-open="mentions">Mentions légales</button>
+    <button type="button" data-legal-open="confidentialite">Politique de confidentialité</button>
+  </div>
+
+  <div class="footer-social" aria-label="Réseaux sociaux WYLO">
+    <a href="https://www.facebook.com/wylo.france" target="_blank" rel="noopener" aria-label="Facebook WYLO"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.2 8.4V6.8c0-.8.2-1.2 1.3-1.2H17V2.8c-.7-.1-1.5-.2-2.3-.2-2.7 0-4.5 1.6-4.5 4.6v1.2H7.3v3.1h2.9v9.9h3.5v-9.9h2.9l.4-3.1h-3z"/></svg></a>
+    <a href="https://www.instagram.com/wylo_app/" target="_blank" rel="noopener" aria-label="Instagram WYLO"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.3 2.8h9.4c2.5 0 4.5 2 4.5 4.5v9.4c0 2.5-2 4.5-4.5 4.5H7.3c-2.5 0-4.5-2-4.5-4.5V7.3c0-2.5 2-4.5 4.5-4.5zm0 3.1c-.8 0-1.4.6-1.4 1.4v9.4c0 .8.6 1.4 1.4 1.4h9.4c.8 0 1.4-.6 1.4-1.4V7.3c0-.8-.6-1.4-1.4-1.4H7.3zm4.7 2.3a3.8 3.8 0 1 1 0 7.6 3.8 3.8 0 0 1 0-7.6zm0 2.6a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zm4.2-3.1a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8z"/></svg></a>
+    <a href="https://www.tiktok.com/@wylo.app" target="_blank" rel="noopener" aria-label="TikTok WYLO"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.7 2.6c.4 2.4 1.8 3.8 4.1 4v3.3c-1.4.1-2.7-.3-4-1.1v6.5c0 4.1-2.3 6.2-5.8 6.2-3.2 0-5.8-2-5.8-5.3 0-3.7 3-5.9 6.6-5.2v3.5c-1.6-.5-3 .2-3 1.6 0 1.2 1 1.9 2.1 1.9 1.4 0 2.2-.8 2.2-2.7V2.6h3.6z"/></svg></a>
+    <a href="https://www.linkedin.com/company/wylo-france" target="_blank" rel="noopener" aria-label="LinkedIn WYLO"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.1 8.8h3.4v12.1H5.1V8.8zm1.7-5.7a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm4.4 5.7h3.2v1.6h.1c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.2 2.3 4.2 5.4v7h-3.4v-6.2c0-1.5 0-3.4-2.1-3.4s-2.4 1.6-2.4 3.3v6.3h-3.4V8.8z"/></svg></a>
+  </div>
+</footer>
+
+<div class="legal-modal" id="legalModal" aria-hidden="true">
+  <div class="legal-dialog" role="dialog" aria-modal="true" aria-labelledby="legalTitle">
+    <button class="legal-close" type="button" aria-label="Fermer">×</button>
+    <div id="legalContent"></div>
+  </div>
+</div>
+
+<template id="mentionsTemplate">
+  <h3 id="legalTitle">Mentions légales</h3>
+  <p><strong>Éditeur du site</strong><br>wylo<br>contact@wylo-app.com</p>
+  <p><strong>Responsable de publication</strong><br>wylo</p>
+  <p><strong>Hébergement</strong><br>GitHub Pages<br>GitHub, Inc.<br>88 Colin P. Kelly Jr Street<br>San Francisco, CA 94107<br>États-Unis</p>
+</template>
+
+<template id="confidentialiteTemplate">
+  <h3 id="legalTitle">Politique de confidentialité</h3>
+  <p>Les adresses email transmises via le formulaire de préinscription sont utilisées uniquement afin d’informer les utilisateurs du lancement officiel de wylo.</p>
+  <p>Aucune donnée n’est vendue, transmise ou utilisée à des fins publicitaires tierces.</p>
+  <p>Conformément au RGPD, vous pouvez demander l’accès, la modification ou la suppression de vos données à l’adresse suivante :<br><strong>contact@wylo-app.com</strong></p>
+</template>
+
+<script>
+
+const legalModal = document.getElementById("legalModal");
+const legalContent = document.getElementById("legalContent");
+const legalClose = legalModal ? legalModal.querySelector(".legal-close") : null;
+
+function openLegalModal(type) {
+  if (!legalModal || !legalContent) return;
+  const template = document.getElementById(type === "mentions" ? "mentionsTemplate" : "confidentialiteTemplate");
+  if (!template) return;
+  legalContent.innerHTML = template.innerHTML;
+  legalModal.classList.add("open");
+  legalModal.setAttribute("aria-hidden", "false");
+}
+
+function closeLegalModal() {
+  if (!legalModal) return;
+  legalModal.classList.remove("open");
+  legalModal.setAttribute("aria-hidden", "true");
+}
+
+document.querySelectorAll("[data-legal-open]").forEach((button) => {
+  button.addEventListener("click", () => openLegalModal(button.dataset.legalOpen));
+});
+
+if (legalClose) {
+  legalClose.addEventListener("click", closeLegalModal);
+}
+
+if (legalModal) {
+  legalModal.addEventListener("click", (event) => {
+    if (event.target === legalModal) closeLegalModal();
+  });
+}
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeLegalModal();
+});
+
+const root = document.documentElement;
+const auditorium = document.getElementById("auditorium");
+const finalSpace = document.getElementById("signup");
+const seatSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="200.058" height="61.898" viewBox="0 0 200.058 61.898">  <g id="Groupe_5792" data-name="Groupe 5792" transform="translate(0.5 0.5)">    <path id="Soustraction_1" data-name="Soustraction 1" d="M199.058,60.9h0c0-11.521-9.355-21.782-23.283-25.533a293.637,293.637,0,0,0-76.3-10.029c-2.294,0-4.657.028-7.022.084a292.334,292.334,0,0,0-68.909,9.861A35.512,35.512,0,0,0,6.594,45.065a25.539,25.539,0,0,0-4.811,7.287A21.552,21.552,0,0,0,0,60.594L0,37.133A23.2,23.2,0,0,1,1.761,28.3,26.921,26.921,0,0,1,6.73,20.5a33.272,33.272,0,0,1,7.707-6.261,40.235,40.235,0,0,1,9.974-4.2A283.643,283.643,0,0,1,92.529.084C94.833.028,97.168,0,99.471,0A284.728,284.728,0,0,1,174.9,10.116c14.452,3.971,24.162,14.833,24.162,27.029Z" transform="translate(0 0)" fill="#d34c4f" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1"/>  </g></svg>`;
+const rows = 16;
+const baseCols = 17;
+const seats = [];
+function seededRandom(seed) { const x = Math.sin(seed) * 10000; return x - Math.floor(x); }
+function buildSeats() {
+  const all = [];
+  for (let r = 0; r < rows; r++) {
+    const row = document.createElement("div"); row.className = "row";
+    const depth = r / (rows - 1);
+    const width = (1820 - r * 72) + (r >= rows - 3 ? 150 : 0);
+    const top = 772 - r * 34;
+    const z = r * 32;
+    const rowScale = 1 - r * .009;
+    const gap = 5.5 - r * .08;
+    row.style.width = width + "px"; row.style.top = top + "px";
+    row.style.setProperty("--z", z + "px"); row.style.setProperty("--rowScale", rowScale); row.style.setProperty("--gap", gap + "px");
+    const cols = r >= rows - 3 ? baseCols + 2 : baseCols;
+    for (let c = 0; c < cols; c++) {
+      const cut = Math.floor(r * .16);
+      const isSeat = c >= cut && c < cols - cut;
+      if (!isSeat) { const gapEl = document.createElement("div"); gapEl.style.width = "145px"; gapEl.style.height = "70px"; row.appendChild(gapEl); continue; }
+      const seat = document.createElement("div"); seat.className = "seat"; seat.innerHTML = seatSvg;
+      const center = (cols - 1) / 2; const normalizedX = (c - center) / center; const absX = Math.abs(normalizedX);
+      const w = 138 - r * 2.2 - absX * 10; const h = 52 - r * .7;
+      const rotateY = -normalizedX * 14; const skew = -normalizedX * 3.5;
+      const br = 1.05 - depth * .30 - absX * .09; const op = 1 - depth * .18 - absX * .04;
+      seat.style.setProperty("--w", w + "px"); seat.style.setProperty("--h", h + "px"); seat.style.setProperty("--ry", rotateY.toFixed(2) + "deg"); seat.style.setProperty("--skew", skew.toFixed(2) + "deg"); seat.style.setProperty("--br", Math.max(.54, br).toFixed(2)); seat.style.setProperty("--op", Math.max(.58, op).toFixed(2));
+      const rand = seededRandom((r + 1) * 97 + (c + 3) * 131);
+      const order = rand * .92 + depth * .08;
+      seat.dataset.order = order; all.push(seat); row.appendChild(seat);
+    }
+    auditorium.appendChild(row);
+  }
+  all.sort((a,b)=>Number(a.dataset.order)-Number(b.dataset.order)); seats.push(...all);
+}
+function scrollProgress() { const max = document.body.scrollHeight - window.innerHeight; return Math.min(1, Math.max(0, window.scrollY / max)); }
+function finalScreenProgress() { const rect = finalSpace.getBoundingClientRect(); const start = window.innerHeight * .95; const end = window.innerHeight * .22; const raw = (start - rect.top) / (start - end); return Math.min(1, Math.max(0, raw)); }
+function update() {
+  const progress = scrollProgress();
+  const seatProgress = Math.min(1, progress / .62);
+  const visibleCount = Math.floor(seatProgress * seats.length);
+  seats.forEach((seat, index) => seat.classList.toggle("on", index < visibleCount));
+  const s = finalScreenProgress();
+  const rawScreenOpacity = Math.max(0, Math.min(1, (s - .12) / .58));
+  const screenOpacity = rawScreenOpacity < .03 ? 0 : rawScreenOpacity;
+  root.style.setProperty("--screenOpacity", screenOpacity.toFixed(3));
+  root.style.setProperty("--screenPointer", screenOpacity > .35 ? "auto" : "none");
+  root.style.setProperty("--roomLight", (.08 + screenOpacity * .18).toFixed(3));
+  root.style.setProperty("--heroFade", Math.max(0, 1 - progress * 6).toFixed(3));
+}
+
+const signupForm = document.getElementById("signupForm");
+if (signupForm) {
+  signupForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    window.location.href = "mailto:contact@wylo-app.com?subject=Pr%C3%A9-inscription%20WYLO&body=Bonjour%2C%0A%0AJe%20souhaite%20%C3%AAtre%20inform%C3%A9.e%20d%C3%A8s%20le%20lancement%20officiel%20de%20WYLO%20et%20recevoir%20un%20email%20lorsque%20l%E2%80%99application%20sera%20disponible.%0A%0AL%E2%80%99adresse%20email%20que%20je%20partage%20ici%20est%20uniquement%20destin%C3%A9e%20%C3%A0%20cet%20usage%20et%20ne%20peut%20%C3%AAtre%20utilis%C3%A9e%20%C3%A0%20d%E2%80%99autres%20fins.%0A%0ABonne%20journ%C3%A9e.";
+    const button = signupForm.querySelector("button");
+    if (button) button.textContent = "Email envoyé";
+  });
+}
+buildSeats();
+update();
+window.addEventListener("scroll", update, { passive:true });
+window.addEventListener("resize", update);
+</script>
+</body>
+</html>
